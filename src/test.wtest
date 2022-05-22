@@ -24,4 +24,12 @@ describe "Propiedades de una bicicleta con accesorios" {
 	test "Tiene luz?" {
 		assert.that(biciA.tieneLuz())
 	}
+	
+	test "Carga" {
+		assert.equals(20+10/3, biciA.carga())
+	}
+	
+	test "Peso" {
+		assert.equals(26/2 + (20+10/3), biciA.peso())
+	}
 }
