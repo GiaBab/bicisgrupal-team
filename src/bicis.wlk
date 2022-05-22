@@ -37,6 +37,6 @@ class Bici {
 	method peso() = rodado / 2 + self.carga()
 	
 	// Describe si la bicicleta tiene luz
-	method tieneLuz() = accesorios.any{accesorio => accesorio.tieneLuz()}
+	method tieneLuz() = accesorios.any{accesorio => accesorio.esLuminoso()}
 		
 }
