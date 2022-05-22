@@ -1,0 +1,27 @@
+import bicis.*
+import accesorios.*
+
+describe "Propiedades de una bicicleta" {	
+	
+	var biciA = new Bici(rodado=26, largo=120, marca="Legnano")
+	
+	test "Altura" {
+		assert.equals(26 * 2.5 + 15, biciA.altura())
+	}
+	
+	test "Velocidad" {
+		assert.equals(26 + 2, biciA.velocidad())
+	}
+}
+
+describe "Propiedades de una bicicleta con accesorios" {
+	var biciA = new Bici(rodado=26, largo=120, marca="Legnano", accesorios=#{
+		new Farolito(),
+		new Canasto(volumen=10),
+		new MorralDeBici(largo=10, tieneOjoDeGato=false)
+	})
+	
+	test "Tiene luz?" {
+		assert.that(biciA.tieneLuz())
+	}
+}
