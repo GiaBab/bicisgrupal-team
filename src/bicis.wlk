@@ -38,5 +38,9 @@ class Bici {
 	
 	// Describe si la bicicleta tiene luz
 	method tieneLuz() = accesorios.any{accesorio => accesorio.esLuminoso()}
-		
+	
+	// cantidad de accesorios livianos de una bici,
+	// o sea, la cantidad de accesorios cuyo peso es menor a 1 kg.
+	
+	method cantidadAccesoriosLivianos() = accesorios.filter{a => a.peso() < 1}.size()
 }
