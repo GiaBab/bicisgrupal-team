@@ -23,10 +23,13 @@ class Bici {
 	
 	// Accesorios de la bicicleta
 	var accesorios = #{}
-	
-	
+
+	// Retorna los accesorios de la bicicleta
 	method accesorios() = accesorios
-	
+
+	// Marca de la bicicleta
+	method marca() = marca
+
 	// Altura de la bicicleta
 	method altura() = rodado * 2.5 + 15
 	
@@ -45,6 +48,6 @@ class Bici {
 	
 	// cantidad de accesorios livianos de una bici,
 	// o sea, la cantidad de accesorios cuyo peso es menor a 1 kg.
-	
 	method cantidadAccesoriosLivianos() = accesorios.count{a => a.peso() < 1}
+
 }

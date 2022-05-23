@@ -1,5 +1,6 @@
 import bicis.*
 import accesorios.*
+import deposito.*
 
 
 
@@ -41,3 +42,55 @@ describe "Propiedades de una bicicleta con accesorios" {
 	
 }
 
+/*
+Por ejemplo, para un depósito que tiene las tres bicis descriptas en el punto anterior, tenemos:
+
+las bicis rápidas son las dos primeras (la rodado 28 y la rodado 26).
+las marcas son "Olmo" y "Legnano".
+el depósito no es nocturno (por la tercera bici).
+sí tiene bici para llevar 10 kilos, no tiene bici para llevar 50 kilos.
+Un depósito que tenga solamente las dos primeras bicis, sí es nocturno.
+*/
+describe "Depósito" {
+	
+	// Bicis normies
+	const biciA = new Bici(rodado=28, largo=120, marca="Olmo")
+	const biciB = new Bici(rodado=26, largo=120, marca="Legnano")
+	const biciC = new Bici(rodado=16, largo=120, marca="Olmo", accesorios=#{new Farolito()})
+		
+	const deposito = new Deposito(bicicletas=#{
+		biciA, biciB, biciC
+	})
+	
+	// Momento de bicis OP (Jerga de overpowered)
+	const biciOP_A = new Bici(rodado=26, largo=120, marca="Olmo", accesorios=#{
+		new Canasto(volumen=10)
+	})
+	const biciOP_B = new Bici(rodado=24, largo=120, marca="BMX", accesorios=#{
+		new MorralDeBici(largo=20, tieneOjoDeGato=true)
+	})
+	
+	const depositoDeBicisOP = new Deposito(bicicletas=#{
+		biciOP_A, biciOP_B
+	})
+	
+	test "Bicis rápidas" {
+		assert.equals(#{biciA, biciB}, deposito.bicisRapidas())
+	}
+	
+	test "Marcas de bicis" {
+		assert.equals(#{"Olmo", "Legnano"}, deposito.marcasDeBicis())
+	}
+	
+	test "Depósito nocturno?" {
+		assert.notThat(deposito.esNocturno())
+	}
+	
+	test "No pueden llevar 0.4kg" {
+		assert.notThat(deposito.algunaBiciPuedeLlevar(0.4))
+	}
+	
+	test "Bicis que puedan cargar 5kg" {
+		assert.that(depositoDeBicisOP.algunaBiciPuedeLlevar(5))
+	}
+}
