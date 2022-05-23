@@ -24,6 +24,9 @@ class Bici {
 	// Accesorios de la bicicleta
 	var accesorios = #{}
 
+	// Retorna los accesorios de la bicicleta
+	method accesorios() = accesorios
+
 	// Marca de la bicicleta
 	method marca() = marca
 
@@ -36,6 +39,7 @@ class Bici {
 	// Suma de la carga de cada accesorio
 	method carga() = accesorios.sum{accesorio => accesorio.carga()}
 	
+	
 	// Peso total de la bicicleta
 	method peso() = rodado / 2 + self.carga()
 	
@@ -44,5 +48,6 @@ class Bici {
 	
 	// cantidad de accesorios livianos de una bici,
 	// o sea, la cantidad de accesorios cuyo peso es menor a 1 kg.
-	method cantidadAccesoriosLivianos() = accesorios.filter{a => a.peso() < 1}.size()
+	method cantidadAccesoriosLivianos() = accesorios.count{a => a.peso() < 1}
+
 }

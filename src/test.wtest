@@ -2,6 +2,8 @@ import bicis.*
 import accesorios.*
 import deposito.*
 
+
+
 describe "Propiedades de una bicicleta" {	
 	
 	var biciA = new Bici(rodado=26, largo=120, marca="Legnano")
