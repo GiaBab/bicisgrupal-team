@@ -42,6 +42,5 @@ class Bici {
 	// cantidad de accesorios livianos de una bici,
 	// o sea, la cantidad de accesorios cuyo peso es menor a 1 kg.
 	
-	method cantidadAccesoriosLivianos(){return accesorios.filter{a=>a.peso() < 1}.size()}
-	
+	method cantidadAccesoriosLivianos() = accesorios.filter{a => a.peso() < 1}.size()
 }
