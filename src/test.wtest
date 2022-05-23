@@ -1,6 +1,8 @@
 import bicis.*
 import accesorios.*
 
+
+
 describe "Propiedades de una bicicleta" {	
 	
 	var biciA = new Bici(rodado=26, largo=120, marca="Legnano")
@@ -38,3 +40,4 @@ describe "Propiedades de una bicicleta con accesorios" {
 	}
 	
 }
+

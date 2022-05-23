@@ -23,7 +23,10 @@ class Bici {
 	
 	// Accesorios de la bicicleta
 	var accesorios = #{}
-
+	
+	
+	method accesorios() = accesorios
+	
 	// Altura de la bicicleta
 	method altura() = rodado * 2.5 + 15
 	
@@ -32,6 +35,7 @@ class Bici {
 	
 	// Suma de la carga de cada accesorio
 	method carga() = accesorios.sum{accesorio => accesorio.carga()}
+	
 	
 	// Peso total de la bicicleta
 	method peso() = rodado / 2 + self.carga()
@@ -42,5 +46,5 @@ class Bici {
 	// cantidad de accesorios livianos de una bici,
 	// o sea, la cantidad de accesorios cuyo peso es menor a 1 kg.
 	
-	method cantidadAccesoriosLivianos() = accesorios.filter{a => a.peso() < 1}.size()
+	method cantidadAccesoriosLivianos() = accesorios.count{a => a.peso() < 1}
 }
