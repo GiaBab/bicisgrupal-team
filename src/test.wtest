@@ -33,8 +33,7 @@ describe "Propiedades de una bicicleta con accesorios" {
 		assert.equals(26/2 + (20+10/3), biciA.peso())
 	}
 	
-	test "cantidad accesorios livianos "{
-		
+	test "Cantidad de accesorios livianos" {
 		assert.equals(1,biciA.cantidadAccesoriosLivianos())
 	}
 	
