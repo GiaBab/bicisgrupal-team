@@ -10,7 +10,7 @@ class Farolito {
 // El peso se calcula como volumen / 10
 // la carga como volumen * 2. No es luminoso.
 class Canasto {
-	var property volumen
+	const volumen
 	method peso() = volumen / 10
 	method carga() = volumen * 2
 	method esLuminoso() = false  
@@ -21,8 +21,8 @@ class Canasto {
 // El peso es fijo, 1.2 kg. La carga se calcula como largo / 3. 
 // Es luminoso si tiene ojo de gato.
 class MorralDeBici {
-	var property largo
-	var property tieneOjoDeGato
+	const largo
+	const tieneOjoDeGato 
 	method peso() = 1.2
 	method carga() = largo / 3
 	method esLuminoso() = tieneOjoDeGato
