@@ -1,27 +1,16 @@
-/*
-Agregar al modelo los depósitos donde se guardan las bicis. Para cada depósito, se indica la colección de bicis que están ahí.
-
-Agregar métodos para consultar, dado un depósito:
-
-la colección de sus bicis rápidas. Una bici se considera rápida si su velocidad de crucero es mayor a 25.
-la colección formada por la marca de cada una de las bicis, sin repetidos.
-si el depósito es nocturno o no. La condición es que todas sus bicis tengan luz.
-si tiene bicicleta para llevar una carga expresada en kg. La condición es que para al menos una de las bicis del depósito, la carga que puede llevar sea mayor a los kilos que se piden.
-*/
-
-class Deposito {
-	var property bicicletas = #{}
+class Depositos {
 	
-	// Colección de sus bicis rápidas. Una bici se considera rápida si su velocidad de crucero es mayor a 25.
-	method bicisRapidas() = bicicletas.filter{bici => bici.velocidad() > 25}
+	var bicis = #{}
 	
-	// La colección formada por la marca de cada una de las bicis, sin repetidos.
-	method marcasDeBicis() = bicicletas.map{bici => bici.marca()}.asSet()
-	
-	// Si el depósito es nocturno o no. La condición es que todas sus bicis tengan luz.
-	method esNocturno() = bicicletas.all{bici => bici.tieneLuz()}
-	
-	// Si tiene bicicleta para llevar una carga expresada en kg. 
-	// La condición es que para al menos una de las bicis del depósito, la carga que puede llevar sea mayor a los kilos que se piden.
-	method algunaBiciPuedeLlevar(carga) = bicicletas.any{bici => bici.carga() > carga}
+method agregarBiciADeposito(unaBici){ bicis.add(unaBici)}
+method removerBiciDeDeposito(unaBici){bicis.remove(unaBici)}
+method bicisRapidas(){return bicis.filter{b=>b.velocidad() > 25}}
+method marcaBicis(){return bicis.map{b=>b.marca()}.asSet()}
+method esNocturno(){return bicis.all{b=>b.tieneLuz()}}
+method biciQuePuedaLLevar(carga){return bicis.any{b=>b.carga() > carga }}	
+method laMasRapida(){return bicis.max{b=>b.velocidad()}}
+method marcaDeLaMasRapida(){return self.laMasRapida().marca()}
+method bicisDeLargoMayorA(largo){return bicis.filter{b=>b.largo() > largo}}
+method cargaTotalDeBicisLargas(){return self.bicisDeLargoMayorA(170).sum{b=>b.carga()}}
+method cantidadSinAccesorios(){return bicis.count{b=>b.accesorios().isEmpty()}}
 }
