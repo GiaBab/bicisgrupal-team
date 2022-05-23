@@ -1,15 +1,15 @@
 class Depositos {
 	
 	var bicicletas = #{}
-	algunaBiciPuedeLlevar
+
 	// Agrega una bicicleta al depósito
-	method agregarBiciADeposito(unaBici){ bicis.add(unaBici) }
+	method agregarBiciADeposito(unaBici){ bicicletas.add(unaBici) }
 	
 	// Quita una bicicleta del depósito
-	method removerBiciDeDeposito(unaBici){ bicis.remove(unaBici) }
+	method removerBiciDeDeposito(unaBici){ bicicletas.remove(unaBici) }
 	
 	// Colección de sus bicis rápidas. Una bici se considera rápida si su velocidad de crucero es mayor a 25.
-	method bicisRapidas() = bicis.filter{ bici => bici.velocidad() > 25 }
+	method bicisRapidas() = bicicletas.filter{ bici => bici.velocidad() > 25 }
 	
 	// La colección formada por la marca de cada una de las bicis, sin repetidos.
 	method marcasDeBicis() = bicicletas.map{ bici => bici.marca()}.asSet() }
@@ -22,17 +22,17 @@ class Depositos {
 	method algunaBiciPuedeLlevar(carga) = bicicletas.any{ bici => bici.carga() > carga }
 	
 	// Retorna la bicicleta con mayor velocidad
-	method laMasRapida() = bicis.max{ bici => bici.velocidad() }
+	method laMasRapida() = bicicletas.max{ bici => bici.velocidad() }
 	
 	// Retorna la marca de la bicicleta más rápida
 	method marcaDeLaMasRapida() = self.laMasRapida().marca()
 	
 	// Retorna las bicicletas que tengan un largo mayor que el valor especificado
-	method bicisDeLargoMayorQue(largo) = bicis.filter{ bici => bici.largo() > largo }
+	method bicisDeLargoMayorQue(largo) = bicicletas.filter{ bici => bici.largo() > largo }
 	
 	// Suma la carga de las bicicletas que tengan un largo mayor a 170
 	method cargaTotalDeBicisLargas() = self.bicisDeLargoMayorQue(170).sum{ bici => bici.carga() }
 	
 	// Retorna la cantidad de bicicletas sin accesorios en el depósito
-	method cantidadSinAccesorios() = bicis.count{ bici => bici.accesorios().isEmpty() }
+	method cantidadSinAccesorios() = bicicletas.count{ bici => bici.accesorios().isEmpty() }
 }
