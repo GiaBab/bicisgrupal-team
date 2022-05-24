@@ -1,7 +1,8 @@
-class Depositos {
+class Deposito {
 	
 	var bicicletas = #{}
-
+	
+	method bicicletas() = bicicletas
 	// Agrega una bicicleta al depósito
 	method agregarBiciADeposito(unaBici){ bicicletas.add(unaBici) }
 	
@@ -12,7 +13,7 @@ class Depositos {
 	method bicisRapidas() = bicicletas.filter{ bici => bici.velocidad() > 25 }
 	
 	// La colección formada por la marca de cada una de las bicis, sin repetidos.
-	method marcasDeBicis() = bicicletas.map{ bici => bici.marca()}.asSet() }
+	method marcasDeBicis() = bicicletas.map{ bici => bici.marca()}.asSet() 
 	
 	// Si el depósito es nocturno o no. La condición es que todas sus bicis tengan luz.
 	method esNocturno() = bicicletas.all{ bici => bici.tieneLuz() }

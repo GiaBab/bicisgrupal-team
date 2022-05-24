@@ -1,15 +1,16 @@
-// De cada bicicleta se informa: el rodado (p.ej. 26), 
-// el largo en centímetros (p.ej. 120 para una bici de 1.20 metros de largo), 
-// la marca (p.ej. "Legnano"), y los accesorios. 
-// Estos últimos (los accesorios) aportan distintas características a la bici en la que se instalan.
-// A partir de estos datos, debe poder obtenerse la siguiente información referida a una bici:
+/*
+ De cada bicicleta se informa: el rodado (p.ej. 26), 
+ el largo en centímetros (p.ej. 120 para una bici de 1.20 metros de largo), 
+ la marca (p.ej. "Legnano"), y los accesorios. 
+ Estos últimos (los accesorios) aportan distintas características a la bici en la que se instalan.
+ A partir de estos datos, debe poder obtenerse la siguiente información referida a una bici:
 
-// altura: se calcula como rodado * 2.5 + 15.
-// velocidad de crucero: si la bici tiene más de 120 cm, entonces se calcula como rodado + 6, si no, como rodado + 2.
-// carga: es la suma de la carga que puede llevar cada accesorio.
-// peso: es la suma de rodado / 2 más el peso total de los accesorios.
-// tieneLuz: es verdadero si al menos uno de los accesorios es luminoso.
-
+ altura: se calcula como rodado * 2.5 + 15.
+ velocidad de crucero: si la bici tiene más de 120 cm, entonces se calcula como rodado + 6, si no, como rodado + 2.
+ carga: es la suma de la carga que puede llevar cada accesorio.
+ peso: es la suma de rodado / 2 más el peso total de los accesorios.
+ tieneLuz: es verdadero si al menos uno de los accesorios es luminoso.
+*/
 class Bici {
 	
 	// Significado desconocido
@@ -29,7 +30,9 @@ class Bici {
 
 	// Marca de la bicicleta
 	method marca() = marca
-
+	
+	// Largo de la bisicleta
+	method largo() = largo 
 	// Altura de la bicicleta
 	method altura() = rodado * 2.5 + 15
 	
@@ -39,15 +42,28 @@ class Bici {
 	// Suma de la carga de cada accesorio
 	method carga() = accesorios.sum{accesorio => accesorio.carga()}
 	
-	
 	// Peso total de la bicicleta
 	method peso() = rodado / 2 + self.carga()
 	
 	// Describe si la bicicleta tiene luz
 	method tieneLuz() = accesorios.any{accesorio => accesorio.esLuminoso()}
 	
-	// cantidad de accesorios livianos de una bici,
-	// o sea, la cantidad de accesorios cuyo peso es menor a 1 kg.
+	/*  cantidad de accesorios livianos de una bici,
+	 o sea, la cantidad de accesorios cuyo peso es menor a 1 kg. */
 	method cantidadAccesoriosLivianos() = accesorios.count{a => a.peso() < 1}
-
+	
+	// compara el largo de dos bici
+	method distance(a, b) = (a.largo() - b.largo()).abs() 
+	// pregunta si dos bicis tiene **largAbs** diferencia de largo
+    method sonDeLargoMenorQue(a, b, largAbs) = self.distance(a, b) <= largAbs
+    // pregunta si son de la misma marca
+    method mismaMarca(a, b) = a.marca() == b.marca()
+    // pregunta si en el deposito hay compañeras
+    method esCompannera(biciEnDepositos)= 
+        biciEnDepositos.filter{b => self.mismaMarca(self, b) && self.sonDeLargoMenorQue(self, b, 10)}
 }
+
+
+// marca de bicis
+object legnano {}
+object olmo {}
