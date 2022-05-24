@@ -21,6 +21,7 @@ class Canasto {
  y si tiene ojo de gato o no. 
  El peso es fijo, 1.2 kg. La carga se calcula como largo / 3. 
  Es luminoso si tiene ojo de gato. */
+ 
 class MorralDeBici {
 	const largo
 	const tieneOjoDeGato 
@@ -28,3 +29,9 @@ class MorralDeBici {
 	method carga() = largo / 3
 	method esLuminoso() = tieneOjoDeGato
 }
+
+
+/*
+Implementariamos el armado de una nueva clase, de nombre "accesorios" y a esta nueva clase darle cartacticas las cuales se relacionen
+con los accesorios para bicicletas creados anteriormente. Esto permite que el codigo echo hasta el momento no genere cambios con el nuevo accesorio.
+*/
