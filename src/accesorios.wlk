@@ -1,6 +1,14 @@
+
+/*
+Punto 5:
+Implementariamos el armado de una nueva clase, de nombre "accesorios" y a esta nueva clase darle cartacticas las cuales se relacionen
+con los accesorios para bicicletas creados anteriormente. Esto permite que el codigo echo hasta el momento no genere cambios con el nuevo accesorio.
+*/ 
+
 /*  Se deben contemplar los siguientes accesorios
 
- Pesa 0.5 kg, no lleva carga (o sea, lleva 0 kg de carga), es luminoso. */
+ Pesa 0.5 kg, no lleva carga (o sea, lleva 0 kg de carga), es luminoso. */ 
+
 class Farolito {
 	method peso() = 0.5
 	method carga() = 0
@@ -29,10 +37,3 @@ class MorralDeBici {
 	method carga() = largo / 3
 	method esLuminoso() = tieneOjoDeGato
 }
-
-
-/*
-Implementariamos el armado de una nueva clase, de nombre "accesorios" y a esta nueva clase darle cartacticas las cuales se relacionen
-con los accesorios para bicicletas creados anteriormente. Esto permite que el codigo echo hasta el momento no genere cambios con el nuevo accesorio.
-
-*/
