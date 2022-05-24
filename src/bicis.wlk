@@ -62,7 +62,7 @@ class Bici {
     method sonMismaMarca(bici) = self.marca() == bici.marca()
 	
     // Dada una lista de bicicletas, filtra las que sean compañeras.
-    method esCompannera(bicicletas) = bicicletas.filter{bici => self.mismaMarca(bici) && self.esMasLarga(bici, 10)}
+    method esCompannera(bicicletas) = bicicletas.filter{bici => self.sonMismaMarca(bici) && self.esMasLarga(bici, 10)}
 }
 
 
