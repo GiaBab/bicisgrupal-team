@@ -34,4 +34,5 @@ class MorralDeBici {
 /*
 Implementariamos el armado de una nueva clase, de nombre "accesorios" y a esta nueva clase darle cartacticas las cuales se relacionen
 con los accesorios para bicicletas creados anteriormente. Esto permite que el codigo echo hasta el momento no genere cambios con el nuevo accesorio.
+
 */
