@@ -52,15 +52,17 @@ class Bici {
 	 o sea, la cantidad de accesorios cuyo peso es menor a 1 kg. */
 	method cantidadAccesoriosLivianos() = accesorios.count{a => a.peso() < 1}
 	
-	// compara el largo de dos bici
-	method distance(a, b) = (a.largo() - b.largo()).abs() 
-	// pregunta si dos bicis tiene **largAbs** diferencia de largo
-    method sonDeLargoMenorQue(a, b, largAbs) = self.distance(a, b) <= largAbs
-    // pregunta si son de la misma marca
-    method mismaMarca(a, b) = a.marca() == b.marca()
-    // pregunta si en el deposito hay compañeras
-    method esCompannera(biciEnDepositos)= 
-        biciEnDepositos.filter{b => self.mismaMarca(self, b) && self.sonDeLargoMenorQue(self, b, 10)}
+	// Devuelve la diferencia de la longitud entre la bicicleta y la bicicleta dada.
+	method diferenciaDeLargoEntre(bici) = (self.largo() - bici.largo()).abs() 
+	
+	// Indica si la longitud de la bicicleta difiere por la de la longitud de la bicicleta dada.
+    method esMasLarga(bici, distancia) = self.diferenciaDeLargoEntre(bici) <= distancia
+	
+    // Indica si la bicicleta tiene la misma marca que la bicicleta dada.
+    method sonMismaMarca(bici) = self.marca() == bici.marca()
+	
+    // Dada una lista de bicicletas, filtra las que sean compañeras.
+    method esCompannera(bicicletas) = bicicletas.filter{bici => self.mismaMarca(bici) && self.esMasLarga(bici, 10)}
 }
 
 
