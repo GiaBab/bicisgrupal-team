@@ -43,27 +43,27 @@ describe "Propiedades de una bicicleta con accesorios" {
 }
 
 /*
-Por ejemplo, para un depósito que tiene las tres bicis descriptas en el punto anterior, tenemos:
-
-las bicis rápidas son las dos primeras (la rodado 28 y la rodado 26).
-las marcas son "Olmo" y "Legnano".
-el depósito no es nocturno (por la tercera bici).
-sí tiene bici para llevar 10 kilos, no tiene bici para llevar 50 kilos.
-Un depósito que tenga solamente las dos primeras bicis, sí es nocturno.
+	Por ejemplo, para un depósito que tiene las tres bicis descriptas en el punto anterior, tenemos:
+	
+	las bicis rápidas son las dos primeras (la rodado 28 y la rodado 26).
+	las marcas son "Olmo" y "Legnano".
+	el depósito no es nocturno (por la tercera bici).
+	sí tiene bici para llevar 10 kilos, no tiene bici para llevar 50 kilos.
+	Un depósito que tenga solamente las dos primeras bicis, sí es nocturno.
 */
 describe "Depósito" {
 	
 	// Bicis normies
-	const biciA = new Bici(rodado=28, largo=120, marca="Olmo")
-	const biciB = new Bici(rodado=26, largo=120, marca="Legnano")
-	const biciC = new Bici(rodado=16, largo=120, marca="Olmo", accesorios=#{new Farolito()})
+	const biciA = new Bici(rodado=28, largo=120, marca=olmo)
+	const biciB = new Bici(rodado=26, largo=120, marca=legnano)
+	const biciC = new Bici(rodado=16, largo=120, marca=olmo, accesorios=#{new Farolito()})
 		
 	const deposito = new Deposito(bicicletas=#{
 		biciA, biciB, biciC
 	})
 	
 	// Momento de bicis OP (Jerga de overpowered)
-	const biciOP_A = new Bici(rodado=26, largo=120, marca="Olmo", accesorios=#{
+	const biciOP_A = new Bici(rodado=26, largo=120, marca=olmo, accesorios=#{
 		new Canasto(volumen=10)
 	})
 	const biciOP_B = new Bici(rodado=24, largo=120, marca="BMX", accesorios=#{
@@ -79,7 +79,7 @@ describe "Depósito" {
 	}
 	
 	test "Marcas de bicis" {
-		assert.equals(#{"Olmo", "Legnano"}, deposito.marcasDeBicis())
+		assert.equals(#{olmo, legnano}, deposito.marcasDeBicis())
 	}
 	
 	test "Depósito nocturno?" {
@@ -92,5 +92,26 @@ describe "Depósito" {
 	
 	test "Bicis que puedan cargar 5kg" {
 		assert.that(depositoDeBicisOP.algunaBiciPuedeLlevar(5))
+	}
+}
+
+describe "son compañeras" {
+	// Bicis normies
+	const biciA = new Bici(rodado=28, largo=120, marca=olmo)
+	const biciB = new Bici(rodado=26, largo=120, marca=legnano)
+	const biciC = new Bici(rodado=16, largo=120, marca=olmo, accesorios=#{new Farolito()})
+	const biciMaradona = new Bici(rodado=26, largo=100, marca=legnano)
+	const biciF = new Bici(rodado=28, largo=130, marca=olmo)
+	
+	const deposito = new Deposito(bicicletas=#{
+		biciA, biciB, biciC
+	})
+		
+	test "son compañeras"{
+		assert.equals(#{biciA, biciC},biciF.esCompannera(deposito.bicicletas()))
+	}
+	
+	test "son compañeras2"{
+		assert.equals(#{},biciMaradona.esCompannera(deposito.bicicletas()))
 	}
 }
