@@ -1,6 +1,8 @@
+import bicis.*
+
 class Deposito {
 	
-	var bicicletas = #{}
+	var bicicletas = []
 	
 	method bicicletas() = bicicletas
 	// Agrega una bicicleta al depósito
@@ -36,4 +38,10 @@ class Deposito {
 	
 	// Retorna la cantidad de bicicletas sin accesorios en el depósito
 	method cantidadSinAccesorios() = bicicletas.count{ bici => bici.accesorios().isEmpty() }
+	
+	// retorna si hay bicicletas compañeras en el deposito
+	method hayCompannera() = bicicletas.any{b => b.esCompannera(bicicletas).size() > 1}
+	
+	
+	//method parDeBicis() = bicicletas.filter{pares => pares.esCompannera(bicicletas).size() > 1}
 }

@@ -6,7 +6,7 @@ import deposito.*
 
 describe "Propiedades de una bicicleta" {	
 	
-	var biciA = new Bici(rodado=26, largo=120, marca="Legnano")
+	var biciA = new Bici(rodado=26, largo=120, marca=legnano)
 	
 	test "Altura" {
 		assert.equals(26 * 2.5 + 15, biciA.altura())
@@ -18,11 +18,11 @@ describe "Propiedades de una bicicleta" {
 }
 
 describe "Propiedades de una bicicleta con accesorios" {
-	var biciA = new Bici(rodado=26, largo=120, marca="Legnano", accesorios=#{
+	var biciA = new Bici(rodado=26, largo=120, marca=legnano, accesorios=[
 		new Farolito(),
 		new Canasto(volumen=10),
 		new MorralDeBici(largo=10, tieneOjoDeGato=false)
-	})
+	])
 	
 	test "Tiene luz?" {
 		assert.that(biciA.tieneLuz())
@@ -56,26 +56,26 @@ describe "Depósito" {
 	// Bicis normies
 	const biciA = new Bici(rodado=28, largo=120, marca=olmo)
 	const biciB = new Bici(rodado=26, largo=120, marca=legnano)
-	const biciC = new Bici(rodado=16, largo=120, marca=olmo, accesorios=#{new Farolito()})
+	const biciC = new Bici(rodado=16, largo=120, marca=olmo, accesorios=[new Farolito()])
 		
-	const deposito = new Deposito(bicicletas=#{
+	const deposito = new Deposito(bicicletas=[
 		biciA, biciB, biciC
-	})
+	])
 	
 	// Momento de bicis OP (Jerga de overpowered)
-	const biciOP_A = new Bici(rodado=26, largo=120, marca=olmo, accesorios=#{
+	const biciOP_A = new Bici(rodado=26, largo=120, marca=olmo, accesorios=[
 		new Canasto(volumen=10)
-	})
-	const biciOP_B = new Bici(rodado=24, largo=120, marca="BMX", accesorios=#{
+	])
+	const biciOP_B = new Bici(rodado=24, largo=120, marca="BMX", accesorios=[
 		new MorralDeBici(largo=20, tieneOjoDeGato=true)
-	})
+	])
 	
 	const depositoDeBicisOP = new Deposito(bicicletas=#{
 		biciOP_A, biciOP_B
 	})
 	
 	test "Bicis rápidas" {
-		assert.equals(#{biciA, biciB}, deposito.bicisRapidas())
+		assert.equals([biciA, biciB], deposito.bicisRapidas())
 	}
 	
 	test "Marcas de bicis" {
@@ -99,19 +99,35 @@ describe "son compañeras" {
 	// Bicis normies
 	const biciA = new Bici(rodado=28, largo=120, marca=olmo)
 	const biciB = new Bici(rodado=26, largo=120, marca=legnano)
-	const biciC = new Bici(rodado=16, largo=120, marca=olmo, accesorios=#{new Farolito()})
+	const biciC = new Bici(rodado=16, largo=120, marca=olmo, accesorios=[new Farolito()])
 	const biciMaradona = new Bici(rodado=26, largo=100, marca=legnano)
 	const biciF = new Bici(rodado=28, largo=130, marca=olmo)
 	
-	const deposito = new Deposito(bicicletas=#{
+	const deposito = new Deposito(bicicletas=[
 		biciA, biciB, biciC
-	})
-		
+	])
+	
+	const deposito2 = new Deposito(bicicletas=[
+		biciA, biciB, biciMaradona
+	])
+	
 	test "son compañeras"{
-		assert.equals(#{biciA, biciC},biciF.esCompannera(deposito.bicicletas()))
+		assert.equals([biciA, biciC],biciF.esCompannera(deposito.bicicletas()))
 	}
 	
 	test "son compañeras2"{
-		assert.equals(#{},biciMaradona.esCompannera(deposito.bicicletas()))
+		assert.equals([],biciMaradona.esCompannera(deposito.bicicletas()))
+	}
+	
+	test "hay compañeras"{
+		assert.that(deposito.hayCompannera())
+	}
+	
+	test "no hay compañeras"{
+		assert.notThat(deposito2.hayCompannera())
+	}
+	
+	test "grupo de compañera"{
+		assert.equals([biciA,biciC], deposito.parDeBicis())
 	}
 }
